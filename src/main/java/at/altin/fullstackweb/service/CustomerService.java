@@ -1,5 +1,6 @@
 package at.altin.fullstackweb.service;
 
+import at.altin.fullstackweb.exception.UserNotFoundException;
 import at.altin.fullstackweb.model.Customer;
 import at.altin.fullstackweb.repo.CustomerRepo;
 import org.springframework.beans.factory.annotation.*;
@@ -30,7 +31,7 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(Long id){
-        return customerRepo.findCustomerById(id).orElseThrow(()-> new UserNotFoundException("User"+id+"not found!"));
+            return (Customer) customerRepo.findCustomerById(id).orElseThrow(()-> new UserNotFoundException("User"+id+"not found!"));
     }
 
     public void deleteCustomer(Long id){
