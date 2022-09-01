@@ -8,7 +8,7 @@ JSON Data
 {
 "name": "Altin Kelmendi",
 "company": "false",
-"email": "kelmendialtin48@gmail.com",
-"phone": "067762101994",
+"email": "kelmendialtinXX@gmail.com",
+"phone": "067761234567",
 "imageUrl": "gibtskeine.jpg"
 }
