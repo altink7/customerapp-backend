@@ -2,6 +2,7 @@ package at.altin.fullstackweb;
 
 import at.altin.fullstackweb.model.*;
 import at.altin.fullstackweb.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -11,6 +12,7 @@ import java.util.*;
 public class CustomerController {
     private final CustomerService customerService;
 
+    @Autowired
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }

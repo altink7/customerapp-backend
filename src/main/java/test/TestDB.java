@@ -32,17 +32,12 @@ public class TestDB {
         return customers;
     }
 
-    public static Customer parseCustomer(String line){
+    public static Customer parseCustomer(String line) {
         String[] parts = line.split(",");
 
-        Customer c= new Customer(parts[4],Boolean.parseBoolean(parts[1]),parts[2],parts[5],parts[3]);
+        Customer c = new Customer(parts[4], Boolean.parseBoolean(parts[1]), parts[2], parts[5], parts[3]);
         c.setId(Long.valueOf(parts[0]));
 
         return c;
-
-
-public class TestDB {
-    public static void main(String[] args) {
-
     }
 }
