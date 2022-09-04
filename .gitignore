@@ -34,4 +34,5 @@ build/
 .vscode/
 
 ### Test ###
-!**/src/main/java/test
+src/main/java/test/testfiles/altindb_customer.
+src/main/java/test/testfiles/altindb_hibernate_sequence.csv
