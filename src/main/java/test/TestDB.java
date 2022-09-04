@@ -39,5 +39,10 @@ public class TestDB {
         c.setId(Long.valueOf(parts[0]));
 
         return c;
+
+
+public class TestDB {
+    public static void main(String[] args) {
+
     }
 }
