@@ -1,4 +1,4 @@
-package at.altin.fullstackweb;
+package at.altin.customerapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +12,10 @@ import java.util.List;
 
 
 @SpringBootApplication
-public class FullstackWebApplication {
+public class CustomerAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FullstackWebApplication.class, args);
+        SpringApplication.run(CustomerAppApplication.class, args);
     }
 
     @Bean

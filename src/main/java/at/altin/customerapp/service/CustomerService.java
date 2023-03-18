@@ -1,8 +1,8 @@
-package at.altin.fullstackweb.service;
+package at.altin.customerapp.service;
 
-import at.altin.fullstackweb.exception.UserNotFoundException;
-import at.altin.fullstackweb.model.Customer;
-import at.altin.fullstackweb.repo.CustomerRepo;
+import at.altin.customerapp.exception.UserNotFoundException;
+import at.altin.customerapp.model.Customer;
+import at.altin.customerapp.repo.CustomerRepo;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 

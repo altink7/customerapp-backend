@@ -1,7 +1,7 @@
-package at.altin.fullstackweb;
+package at.altin.customerapp;
 
-import at.altin.fullstackweb.model.*;
-import at.altin.fullstackweb.service.*;
+import at.altin.customerapp.model.*;
+import at.altin.customerapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;

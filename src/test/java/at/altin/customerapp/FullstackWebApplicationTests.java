@@ -1,4 +1,4 @@
-package at.altin.fullstackweb;
+package at.altin.customerapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

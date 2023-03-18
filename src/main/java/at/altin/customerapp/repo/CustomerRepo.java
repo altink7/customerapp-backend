@@ -1,5 +1,5 @@
-package at.altin.fullstackweb.repo;
-import at.altin.fullstackweb.model.Customer;
+package at.altin.customerapp.repo;
+import at.altin.customerapp.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

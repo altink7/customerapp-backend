@@ -1,6 +1,6 @@
 package test;
 
-import at.altin.fullstackweb.model.Customer;
+import at.altin.customerapp.model.Customer;
 import java.io.*;
 import java.util.*;
 

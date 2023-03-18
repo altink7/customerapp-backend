@@ -1,4 +1,4 @@
-package at.altin.fullstackweb.model;
+package at.altin.customerapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -85,4 +85,6 @@ public class Customer implements Serializable {
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
+
+
 }
