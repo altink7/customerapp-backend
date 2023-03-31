@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * @author altin
+ * @since 2023
+ */
 @Entity(name = "Promotion")
 public class Promotion implements Serializable {
 

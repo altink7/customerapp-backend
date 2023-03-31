@@ -3,7 +3,11 @@ package at.altin.customerapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "OrderHistory")
+/**
+ * @author altin
+ * @since 2023
+ */
+@Entity(name = "order_history")
 public class OrderHistory implements Serializable {
 
     @Id
@@ -17,7 +21,7 @@ public class OrderHistory implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private PurchaseOrder orderPosition;
 
     public Long getId() {
         return id;
@@ -35,12 +39,12 @@ public class OrderHistory implements Serializable {
         this.customer = customer;
     }
 
-    public Order getOrder() {
-        return order;
+    public PurchaseOrder getOrder() {
+        return orderPosition;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(PurchaseOrder orderPosition) {
+        this.orderPosition = orderPosition;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class OrderHistory implements Serializable {
         return "OrderHistory{" +
                 "id=" + id +
                 ", customer=" + customer +
-                ", order=" + order +
+                ", order=" + orderPosition +
                 '}';
     }
 }

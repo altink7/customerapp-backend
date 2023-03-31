@@ -3,6 +3,10 @@ package at.altin.customerapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author altin
+ * @since 2023
+ */
 @Entity(name = "Payment")
 public class Payment implements Serializable {
 
@@ -13,7 +17,7 @@ public class Payment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private PurchaseOrder orderPosition;
 
     private String paymentMethod;
 
@@ -31,12 +35,12 @@ public class Payment implements Serializable {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public PurchaseOrder getOrder() {
+        return orderPosition;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(PurchaseOrder orderPosition) {
+        this.orderPosition = orderPosition;
     }
 
     public String getPaymentMethod() {
@@ -75,7 +79,7 @@ public class Payment implements Serializable {
     public String toString() {
         return "Payment{" +
                 "id=" + id +
-                ", order=" + order +
+                ", order=" + orderPosition +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
                 ", amount=" + amount +

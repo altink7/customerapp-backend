@@ -2,7 +2,10 @@ package at.altin.customerapp.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+/**
+ * @author altin
+ * @since 2023
+ */
 @Entity(name = "Product")
 public class Product implements Serializable {
     @Id

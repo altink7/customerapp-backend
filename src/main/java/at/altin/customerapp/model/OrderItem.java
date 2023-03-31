@@ -4,7 +4,11 @@ package at.altin.customerapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "OrderItem")
+/**
+ * @author altin
+ * @since 2023
+ */
+@Entity(name = "order_item")
 public class OrderItem implements Serializable {
 
     @Id
@@ -13,8 +17,8 @@ public class OrderItem implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "purchase_order_id")
+    private PurchaseOrder purchaseOrder;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -24,12 +28,12 @@ public class OrderItem implements Serializable {
 
     private Double price;
 
-    public Order getOrder() {
-        return order;
+    public PurchaseOrder getOrder() {
+        return purchaseOrder;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(PurchaseOrder orderPosition) {
+        this.purchaseOrder = orderPosition;
     }
 
     public Long getId() {
@@ -68,7 +72,7 @@ public class OrderItem implements Serializable {
     public String toString() {
         return "OrderItem{" +
                 "id=" + id +
-                ", order=" + order +
+                ", order=" + purchaseOrder +
                 ", product=" + product +
                 ", quantity=" + quantity +
                 ", price=" + price +

@@ -2,7 +2,10 @@ package at.altin.customerapp.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+/**
+ * @author altin
+ * @since 2023
+ */
 @Entity(name = "Wishlist")
 public class WishList implements Serializable {
 

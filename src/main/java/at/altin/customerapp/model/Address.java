@@ -3,6 +3,11 @@ package at.altin.customerapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author altin
+ * @since 2023
+ */
+
 @Entity(name = "Address")
 public class Address implements Serializable {
 

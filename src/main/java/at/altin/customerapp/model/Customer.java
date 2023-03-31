@@ -1,6 +1,7 @@
 package at.altin.customerapp.model;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity(name = "Customer")
 public class Customer implements Serializable {
@@ -15,6 +16,10 @@ public class Customer implements Serializable {
     private String phone;
     private String imageUrl;
 
+    /**
+     * @author altin
+     * @since 2023
+     */
     public Customer(String name, boolean company, String email, String phone, String imageUrl) {
         this.name = name;
         this.company = company;
@@ -87,4 +92,14 @@ public class Customer implements Serializable {
     }
 
 
+    @OneToMany(mappedBy = "customer")
+    private Collection<PurchaseOrder> orderPosition;
+
+    public Collection<PurchaseOrder> getOrder() {
+        return orderPosition;
+    }
+
+    public void setOrder(Collection<PurchaseOrder> orderPosition) {
+        this.orderPosition = orderPosition;
+    }
 }

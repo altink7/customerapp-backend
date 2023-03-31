@@ -1,25 +1,28 @@
 package at.altin.customerapp.model;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity(name = "Order")
-public class Order implements Serializable {
-
+/**
+ * @author altin
+ * @since 2023
+ */
+@Entity(name = "purchase_order")
+public class PurchaseOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "purchaseOrder")
     private List<OrderItem> orderItems;
+
 
     private String paymentMethod;
 
@@ -41,14 +44,6 @@ public class Order implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
     }
 
     public String getPaymentMethod() {
@@ -80,7 +75,7 @@ public class Order implements Serializable {
         return "Order{" +
                 "id=" + id +
                 ", customer=" + customer +
-                ", orderItems=" + orderItems +
+                ", orderItems=" +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
                 ", totalAmount=" + totalAmount +
