@@ -1,0 +1,15 @@
+package at.altin.customerapp.data.repo;
+
+import at.altin.customerapp.data.BaseDao;
+import at.altin.customerapp.model.Product;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author altin
+ * @since 2023
+ * @version 1.0
+ * @see Product
+ */
+@Repository
+public interface ProductDao extends BaseDao<Product,Long> {
+}

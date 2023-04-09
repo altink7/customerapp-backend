@@ -11,8 +11,8 @@
     <groupId>at.altin</groupId>
     <artifactId>FullstackWeb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>FullstackWeb</name>
-    <description>FullstackWeb</description>
+    <name>CustomerApp</name>
+    <description>CustomerApp</description>
     <properties>
         <java.version>17</java.version>
     </properties>

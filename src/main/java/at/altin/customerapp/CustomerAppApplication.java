@@ -10,6 +10,12 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Main class for CustomerApp.
+ * @author altin
+ * @since 09.04.2023
+ * @version 1.0
+ */
 
 @SpringBootApplication
 public class CustomerAppApplication {
@@ -32,6 +38,5 @@ public class CustomerAppApplication {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
- }
-
+    }
 }

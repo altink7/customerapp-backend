@@ -1,4 +1,4 @@
-package at.altin.customerapp;
+package at.altin.customerapp.controller;
 
 import at.altin.customerapp.model.*;
 import at.altin.customerapp.service.*;
@@ -7,6 +7,11 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
+/**
+ * @author altin
+ * @since 09.04.2023
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {

@@ -1,26 +1,27 @@
 package at.altin.customerapp.service;
 
 import at.altin.customerapp.model.Product;
-import at.altin.customerapp.repo.ProductRepo;
+import at.altin.customerapp.data.repo.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author altin
- * @since 2023
  * Service for Product
+ * @author altin
+ * @since 09.04.2023
+ * @version 1.0
  */
 @Service
 public class ProductService {
-    ProductRepo productRepo;
+    ProductDao productRepo;
 
     @Autowired
-    public ProductService(ProductRepo productRepo) {
+    public ProductService(ProductDao productRepo) {
         this.productRepo = productRepo;
     }
 
     public void deleteProduct(Long id){
-        productRepo.deleteProductById(id);
+        productRepo.deleteById(id);
     }
 
     public void updateProduct(Product product){
@@ -28,7 +29,7 @@ public class ProductService {
     }
 
     public Product findProductById(Long id){
-        return productRepo.findProductById(id).orElseThrow(()-> new IllegalStateException("Product with id "+id+" does not exist!"));
+        return productRepo.findById(id).orElseThrow(()-> new IllegalStateException("Product with id "+id+" does not exist!"));
     }
 
     public Product addProduct(Product product){

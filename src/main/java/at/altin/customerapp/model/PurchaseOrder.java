@@ -22,13 +22,13 @@ public class PurchaseOrder implements Serializable {
 
     @OneToMany(mappedBy = "purchaseOrder")
     private List<OrderItem> orderItems;
-
-
     private String paymentMethod;
 
     private String paymentStatus;
 
     private Double totalAmount;
+
+    private String orderType;
 
     public Long getId() {
         return id;
@@ -68,6 +68,13 @@ public class PurchaseOrder implements Serializable {
 
     public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 
     @Override

@@ -9,7 +9,6 @@ public class TestDB {
         List<Customer> testData =loadCustomersFromCSVFile("src/main/java/test/testfiles/altindb_customer.csv");
 
         for(Customer c: testData)  System.out.println(c.toString());
-
     }
 
     public static List<Customer> loadCustomersFromCSVFile(String filename) {
