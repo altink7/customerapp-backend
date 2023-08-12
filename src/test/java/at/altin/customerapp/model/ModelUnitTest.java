@@ -14,13 +14,7 @@ class ModelUnitTest {
     @ParameterizedTest
     @MethodSource("classProvider")
     void testModelClasses(Class<?> clazz) {
-        ModelTester.forClass(Product.class)
-                .exclude(GetterSetterTester.class)
-                .exclude(ToStringTester.class)
-                .customTester(instance -> System.out.println("Custom test executed for instance: "+ instance))
-                .instanceSupplier(Product::new)
-                .excludeMethods("toString")
-                .test();
+        ModelTester.forClass(clazz).test();
     }
 
     // Method to provide the classes for testing

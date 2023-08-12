@@ -34,7 +34,6 @@ public class ModelTester {
     private final Class<?> clazz;
     private final List<Class<? extends Tester>> excludedTesters = new ArrayList<>();
     private final List<Tester> testers = new ArrayList<>();
-    private final List<String> excludedMethods = new ArrayList<>();
     private Supplier<Object> instanceSupplier;
 
     private ModelTester(Class<?> clazz) {
@@ -51,11 +50,6 @@ public class ModelTester {
 
     public ModelTester exclude(Class<? extends Tester> testerClass) {
         excludedTesters.add(testerClass);
-        return this;
-    }
-
-    public ModelTester excludeMethods(String... methodNames) {
-        excludedMethods.addAll(List.of(methodNames));
         return this;
     }
 
@@ -97,6 +91,7 @@ public class ModelTester {
 
     private void includeStandardTesters() {
         for (Class<?> testerClass : clazz.getDeclaredClasses()) {
+            // check if tester is marked with tester, standard-tester interface
             if (Tester.class.isAssignableFrom(testerClass) && StandardTester.class.isAssignableFrom(testerClass)) {
                 try {
                     testers.add((Tester) testerClass.getDeclaredConstructor().newInstance());
