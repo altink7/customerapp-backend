@@ -95,4 +95,24 @@ class OrderServiceTest {
 
         assertEquals(expectedOrder, foundOrder);
     }
+
+    @Test
+    void testFindOrderOfType() {
+        List<PurchaseOrder> orders = new ArrayList<>();
+        PurchaseOrder order1 = new PurchaseOrder();
+        order1.setOrderType(OrderType.SHOPPING.name());
+        orders.add(order1);
+        PurchaseOrder order2 = new PurchaseOrder();
+        order2.setOrderType(OrderType.SHOPPING.name());
+        orders.add(order2);
+        PurchaseOrder order3 = new PurchaseOrder();
+        order3.setOrderType(OrderType.BILLING.name());
+        orders.add(order3);
+
+        when(purchaseOrderDao.findAll()).thenReturn(orders);
+
+        Iterable<PurchaseOrder> foundOrders = orderService.findOrderOfType(OrderType.SHOPPING);
+
+        assertEquals(2, foundOrders.spliterator().getExactSizeIfKnown());
+    }
 }
