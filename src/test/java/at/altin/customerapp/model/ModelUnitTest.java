@@ -1,8 +1,9 @@
 package at.altin.customerapp.model;
 
-import at.altin.customerapp.util.GetterSetterTester;
-import at.altin.customerapp.util.ToStringTester;
-import org.junit.jupiter.api.Test;
+import at.altin.customerapp.util.ModelTester;
+import at.altin.customerapp.util.Tester;
+import at.altin.customerapp.util.tester.GetterSetterTester;
+import at.altin.customerapp.util.tester.ToStringTester;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -13,8 +14,13 @@ class ModelUnitTest {
     @ParameterizedTest
     @MethodSource("classProvider")
     void testModelClasses(Class<?> clazz) {
-        GetterSetterTester.testGetterSetter(clazz);
-        ToStringTester.testToStringBeginning(clazz);
+        ModelTester.forClass(Product.class)
+                .exclude(GetterSetterTester.class)
+                .exclude(ToStringTester.class)
+                .customTester(instance -> System.out.println("Custom test executed for instance: "+ instance))
+                .instanceSupplier(Product::new)
+                .excludeMethods("toString")
+                .test();
     }
 
     // Method to provide the classes for testing

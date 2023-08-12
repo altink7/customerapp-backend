@@ -1,4 +1,7 @@
-package at.altin.customerapp.util;
+package at.altin.customerapp.util.tester;
+
+import at.altin.customerapp.util.StandardTester;
+import at.altin.customerapp.util.Tester;
 
 import java.lang.reflect.Method;
 
@@ -16,17 +19,19 @@ import java.lang.reflect.Method;
  * </p>
  *
  * @author altin
- * @since 09.04.2023
+ * @since 12.08.2023
  * @version 1.0
  */
-public class ToStringTester {
+public class ToStringTester implements Tester, StandardTester {
 
     /**
      * Tests the beginning of the toString() method of the specified class.
      *
-     * @param clazz The class to test.
+     * @param instance The class to test.
      */
-    public static void testToStringBeginning(Class<?> clazz) {
+    @Override
+    public void test(Object instance) {
+        Class<?> clazz = instance.getClass();
         try {
             // Get the toString() method of the class
             Method toStringMethod = getToStringMethod(clazz);
@@ -37,13 +42,13 @@ public class ToStringTester {
                 return;
             }
 
-            Object instance = createInstance(clazz);
+            Object instanceTest = createInstance(clazz);
 
             // Define the expected beginning of the toString() representation
             String expectedBeginning = clazz.getSimpleName() + "{";
 
             // Invoke the toString() method and check if it starts with the expected beginning
-            String actualToString = (String) toStringMethod.invoke(instance);
+            String actualToString = (String) toStringMethod.invoke(instanceTest);
             if (!actualToString.startsWith(expectedBeginning)) {
                 throw new AssertionError("Beginning of toString() method for class " + clazz.getSimpleName() + " failed.");
             } else {

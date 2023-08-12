@@ -1,26 +1,28 @@
-package at.altin.customerapp.util;
+package at.altin.customerapp.util.tester;
 
 import at.altin.customerapp.model.Customer;
 import at.altin.customerapp.model.OrderHistory;
 import at.altin.customerapp.model.Product;
 import at.altin.customerapp.model.PurchaseOrder;
-import org.hibernate.criterion.Order;
+import at.altin.customerapp.util.StandardTester;
+import at.altin.customerapp.util.Tester;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.time.LocalDate;
 import java.util.*;
 
 /**
  * Utility class to test getters and setters of a class.
  * @author  altin
- * @since   09.04.2023
+ * @since   12.08.2023
  * @version 1.0
  */
-public class GetterSetterTester {
+public class GetterSetterTester implements Tester, StandardTester {
 
-    public static void testGetterSetter(Class<?> clazz) {
+    @Override
+    public void test(Object instance) {
+        Class<?> clazz = instance.getClass();
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
             if (isGetter(method)) {
@@ -82,7 +84,7 @@ public class GetterSetterTester {
     }
 
     private static Method getMethod(Method setter, Class<?> clazz, String propertyName) throws NoSuchMethodException {
-        Method getter = null;
+        Method getter;
         if (setter.getParameterTypes()[0] == boolean.class || setter.getParameterTypes()[0] == Boolean.class) {
             try {
                 getter = clazz.getDeclaredMethod("is" + propertyName);
