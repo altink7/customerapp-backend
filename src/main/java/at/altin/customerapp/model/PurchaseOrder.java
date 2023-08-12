@@ -79,7 +79,7 @@ public class PurchaseOrder implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "PurchaseOrder{" +
                 "id=" + id +
                 ", customer=" + customer +
                 ", orderItems=" +
