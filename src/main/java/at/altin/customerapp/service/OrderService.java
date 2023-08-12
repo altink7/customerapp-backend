@@ -4,6 +4,7 @@ import at.altin.customerapp.data.repo.PurchaseOrderDao;
 import at.altin.customerapp.model.OrderType;
 import at.altin.customerapp.model.PurchaseOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +32,12 @@ public class OrderService {
         purchaseOrderDao.save(purchaseOrder);
     }
 
-    public void addOrder(PurchaseOrder purchaseOrder) {
-        purchaseOrderDao.save(purchaseOrder);
+    public PurchaseOrder addOrder(PurchaseOrder purchaseOrder) {
+        return purchaseOrderDao.save(purchaseOrder);
+    }
+
+    public Iterable<PurchaseOrder> findAllOrders(Sort orderType) {
+        return purchaseOrderDao.findAll(orderType);
     }
 
     public Iterable<PurchaseOrder> findAllOrders() {
@@ -43,8 +48,8 @@ public class OrderService {
         return purchaseOrderDao.findById(id).orElseThrow(() -> new IllegalStateException("Order with id " + id + " does not exist!"));
     }
 
-    public void findOrderOfType(OrderType orderType) {
+    public Iterable<PurchaseOrder> findOrderOfType(OrderType orderType) {
         List<PurchaseOrder> purchaseOrders = purchaseOrderDao.findAll();
-        purchaseOrders.stream().filter(purchaseOrder -> purchaseOrder.getOrderType().equals(orderType.name())).forEachOrdered(System.out::println);
+        return purchaseOrders.stream().filter(purchaseOrder -> purchaseOrder.getOrderType().equals(orderType.name())).toList();
     }
 }

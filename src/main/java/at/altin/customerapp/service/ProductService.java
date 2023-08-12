@@ -3,6 +3,7 @@ package at.altin.customerapp.service;
 import at.altin.customerapp.model.Product;
 import at.altin.customerapp.data.repo.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,5 +39,9 @@ public class ProductService {
 
     public Iterable<Product> findAllProducts(){
         return productRepo.findAll();
+    }
+
+    public Iterable<Product> findAllProducts(Sort orderType){
+        return productRepo.findAll(orderType);
     }
 }

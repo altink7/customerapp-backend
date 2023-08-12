@@ -25,31 +25,31 @@ public class CustomerController {
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getAllCustomers() {
         List<Customer> customers = customerService.findAllCustomers();
-        return new ResponseEntity<>(customers, HttpStatus.OK);
+        return ResponseEntity.ok(customers);
     }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         Customer customer = customerService.findCustomerById(id);
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+        return ResponseEntity.ok(customer);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
         Customer newCustomer = customerService.addCustomer(customer);
-        return new ResponseEntity<>(newCustomer,HttpStatus.CREATED);
+        return ResponseEntity.ok(newCustomer);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
         Customer updateCustomer = customerService.updateCustomer(customer);
-        return new ResponseEntity<>(updateCustomer,HttpStatus.OK);
+        return ResponseEntity.ok(updateCustomer);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable("id") Long id){
          customerService.deleteCustomer(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
 

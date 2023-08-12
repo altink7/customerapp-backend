@@ -36,7 +36,7 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(Long id){
-            return (Customer) customerRepo.findById(id).orElseThrow(()-> new UserNotFoundException("User"+id+"not found!"));
+            return customerRepo.findById(id).orElseThrow(()-> new UserNotFoundException("User"+id+"not found!"));
     }
 
     public void deleteCustomer(Long id){

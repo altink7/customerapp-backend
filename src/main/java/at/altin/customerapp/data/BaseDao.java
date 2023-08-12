@@ -1,7 +1,9 @@
 package at.altin.customerapp.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.ManagedBean;
 import java.util.Optional;
 
 /**
@@ -12,6 +14,7 @@ import java.util.Optional;
  *     id of the object
  *     @see JpaRepository
  */
+@ManagedBean
 public interface BaseDao<T, ID>  extends JpaRepository<T,ID> {
     /**
      * Delete Object by id.
