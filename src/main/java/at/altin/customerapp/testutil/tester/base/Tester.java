@@ -1,4 +1,4 @@
-package at.altin.customerapp.util;
+package at.altin.customerapp.testutil.tester.base;
 
 /**
  * Marker Interface for All Tester Classes

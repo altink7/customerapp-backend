@@ -1,9 +1,7 @@
 package at.altin.customerapp.model;
 
-import at.altin.customerapp.util.ModelTester;
-import at.altin.customerapp.util.Tester;
-import at.altin.customerapp.util.tester.GetterSetterTester;
-import at.altin.customerapp.util.tester.ToStringTester;
+import at.altin.customerapp.testutil.ModelTester;
+import at.altin.customerapp.testutil.tester.custom.CopyTester;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -14,10 +12,11 @@ class ModelUnitTest {
     @ParameterizedTest
     @MethodSource("classProvider")
     void testModelClasses(Class<?> clazz) {
-        ModelTester.forClass(clazz).test();
+            ModelTester.forClass(clazz)
+                    .customTester(new CopyTester())
+                    .test();
     }
 
-    // Method to provide the classes for testing
     static Stream<Class<?>> classProvider() {
         return Stream.of(
                 Address.class,

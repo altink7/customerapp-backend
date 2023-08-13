@@ -1,6 +1,14 @@
-package at.altin.customerapp.util;
+package at.altin.customerapp.testutil;
+
+import at.altin.customerapp.testutil.tester.base.AbstractClassTester;
+import at.altin.customerapp.testutil.tester.base.Tester;
+import at.altin.customerapp.testutil.tester.standard.EqualsTester;
+import at.altin.customerapp.testutil.tester.standard.GetterSetterTester;
+import at.altin.customerapp.testutil.tester.standard.HashCodeTester;
+import at.altin.customerapp.testutil.tester.standard.ToStringTester;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -10,7 +18,6 @@ import java.util.function.Supplier;
  * including getter and setter methods, toString(), equals(), and hashCode().
  * You can configure the tests to be performed, exclude certain testers, exclude specific methods,
  * and supply custom instance creation logic.
- *
  * Usage example:
  * <pre>
  * {@code
@@ -29,7 +36,13 @@ import java.util.function.Supplier;
  * @since 12.08.2023
  * @version 1.0
  */
-public class ModelTester {
+public class ModelTester extends AbstractClassTester {
+    public static final List<Tester> STANDARD_TESTER;
+
+    static {
+        STANDARD_TESTER = Arrays.asList(
+                new EqualsTester(), new GetterSetterTester(), new HashCodeTester(), new ToStringTester());
+    }
 
     private final Class<?> clazz;
     private final List<Class<? extends Tester>> excludedTesters = new ArrayList<>();
@@ -39,9 +52,7 @@ public class ModelTester {
     private ModelTester(Class<?> clazz) {
         this.clazz = clazz;
         this.instanceSupplier = this::createInstance;
-
-        // Automatically include testers implementing StandardTester
-        includeStandardTesters();
+        testers.addAll(STANDARD_TESTER);
     }
 
     public static ModelTester forClass(Class<?> clazz) {
@@ -86,20 +97,6 @@ public class ModelTester {
     private boolean isTesterExcluded(Class<? extends Tester> testerClass) {
         return excludedTesters.stream()
                 .anyMatch(excludedTester -> excludedTester.equals(testerClass));
-    }
-
-
-    private void includeStandardTesters() {
-        for (Class<?> testerClass : clazz.getDeclaredClasses()) {
-            // check if tester is marked with tester, standard-tester interface
-            if (Tester.class.isAssignableFrom(testerClass) && StandardTester.class.isAssignableFrom(testerClass)) {
-                try {
-                    testers.add((Tester) testerClass.getDeclaredConstructor().newInstance());
-                } catch (ReflectiveOperationException e) {
-                    throw new RuntimeException("Error creating instance of tester class " + testerClass.getSimpleName(), e);
-                }
-            }
-        }
     }
 
     private Object createInstance() {

@@ -1,24 +1,23 @@
-package at.altin.customerapp.util.tester;
+package at.altin.customerapp.testutil.tester.standard;
 
-import at.altin.customerapp.model.Customer;
-import at.altin.customerapp.model.OrderHistory;
-import at.altin.customerapp.model.Product;
-import at.altin.customerapp.model.PurchaseOrder;
-import at.altin.customerapp.util.StandardTester;
-import at.altin.customerapp.util.Tester;
+import at.altin.customerapp.testutil.tester.base.Tester;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Utility class to test getters and setters of a class.
+ * use instanceSupplier from ModelTester if you do not have default Constructor
  * @author  altin
  * @since   12.08.2023
  * @version 1.0
  */
-public class GetterSetterTester implements Tester, StandardTester {
+public class GetterSetterTester implements Tester {
 
     @Override
     public void test(Object instance) {
@@ -138,27 +137,32 @@ public class GetterSetterTester implements Tester, StandardTester {
             if (enumValues.length > 0) {
                 return enumValues[0];
             }
-        } else if (type == LocalDate.class) {
-            return LocalDate.of(2023, 8, 12); // Example for LocalDate
-        } else if (type == Product.class) {
-            return new Product();
-        } else if (type == Customer.class) {
-            return new Customer();
-        } else if (type == OrderHistory.class) {
-            return new OrderHistory();
-        } else if (type == PurchaseOrder.class) {
-            return new PurchaseOrder();
         } else if (Collection.class.isAssignableFrom(type)) {
-            if (List.class.isAssignableFrom(type)) {
-                return new ArrayList<>();
-            } else if (Set.class.isAssignableFrom(type)) {
+            if (HashSet.class.isAssignableFrom(type)) {
                 return new HashSet<>();
-            }
-            else {
+            } else if (ArrayList.class.isAssignableFrom(type)) {
                 return new ArrayList<>();
+            } else {
+                return new ArrayList<>();
+            }
+        } else if (type == LocalDate.class) {
+            return LocalDate.now();
+        } else if (!type.isPrimitive()) {
+            try {
+                Constructor<?> noArgConstructor = type.getDeclaredConstructor();
+                if (noArgConstructor.getParameterCount() == 0) {
+                    return noArgConstructor.newInstance();
+                } else {
+                    throw new IllegalArgumentException("Type has no-arg constructor but cannot be instantiated: " + type.getName());
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 
         return null; // Default for unknown types
     }
+
+
+
 }

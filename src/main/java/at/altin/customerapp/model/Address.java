@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity(name = "Address")
 public class Address implements Serializable {
 
+    private static final long serialVersionUID = 7876904359463936168L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
@@ -122,5 +123,18 @@ public class Address implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, customer, type, street, city, state, country, zipCode);
+    }
+
+    public Address copy() {
+        Address copy = new Address();
+        copy.id = this.id;
+        copy.customer = this.customer;
+        copy.type = this.type;
+        copy.street = this.street;
+        copy.city = this.city;
+        copy.state = this.state;
+        copy.country = this.country;
+        copy.zipCode = this.zipCode;
+        return copy;
     }
 }

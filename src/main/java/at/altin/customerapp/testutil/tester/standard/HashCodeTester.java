@@ -1,8 +1,8 @@
-package at.altin.customerapp.util.tester;
+package at.altin.customerapp.testutil.tester.standard;
 
-import at.altin.customerapp.util.ModelTester;
-import at.altin.customerapp.util.StandardTester;
-import at.altin.customerapp.util.Tester;
+import at.altin.customerapp.testutil.ModelTester;
+import at.altin.customerapp.testutil.tester.base.AbstractClassTester;
+import at.altin.customerapp.testutil.tester.base.Tester;
 
 import java.lang.reflect.Method;
 
@@ -11,7 +11,6 @@ import java.lang.reflect.Method;
  * This class tests whether the hashCode() method of a given class produces consistent results,
  * and it handles both enums and regular classes.
  * If the hashCode() method is not defined in the class, it is not tested.
- *
  * Note: Enums usually have predefined hashCode() implementations.
  * @see EqualsTester
  * @see ModelTester
@@ -19,12 +18,13 @@ import java.lang.reflect.Method;
  * @since 12.08.2023
  * @version 1.0
  */
-public class HashCodeTester implements Tester, StandardTester {
+public class HashCodeTester extends AbstractClassTester implements Tester {
 
     @Override
     public void test(Object instance) {
         Class<?> clazz = instance.getClass();
-        Method hashCodeMethod = getHashCodeMethod(clazz);
+        Method hashCodeMethod = getMethod(clazz, "hashCode");
+
         if (hashCodeMethod == null) {
             return; // No hashCode method, nothing to test
         }
@@ -34,26 +34,6 @@ public class HashCodeTester implements Tester, StandardTester {
 
         if (instance1.equals(instance2) && instance1.hashCode() != instance2.hashCode()) {
             throw new AssertionError("Consistency property of hashCode method failed for class " + clazz.getSimpleName());
-        }
-    }
-
-    private static Method getHashCodeMethod(Class<?> clazz) {
-        try {
-            return clazz.getDeclaredMethod("hashCode");
-        } catch (NoSuchMethodException e) {
-            return null;
-        }
-    }
-
-    private static Object createInstance(Class<?> clazz) {
-        try {
-            if (clazz.isEnum()) {
-                return clazz.getEnumConstants()[0];
-            } else {
-                return clazz.getDeclaredConstructor().newInstance();
-            }
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Error creating instance of class " + clazz.getSimpleName(), e);
         }
     }
 }

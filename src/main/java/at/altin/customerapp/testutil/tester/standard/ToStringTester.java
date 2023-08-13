@@ -1,7 +1,7 @@
-package at.altin.customerapp.util.tester;
+package at.altin.customerapp.testutil.tester.standard;
 
-import at.altin.customerapp.util.StandardTester;
-import at.altin.customerapp.util.Tester;
+import at.altin.customerapp.testutil.tester.base.AbstractClassTester;
+import at.altin.customerapp.testutil.tester.base.Tester;
 
 import java.lang.reflect.Method;
 
@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  * @since 12.08.2023
  * @version 1.0
  */
-public class ToStringTester implements Tester, StandardTester {
+public class ToStringTester extends AbstractClassTester implements Tester {
 
     /**
      * Tests the beginning of the toString() method of the specified class.
@@ -33,18 +33,14 @@ public class ToStringTester implements Tester, StandardTester {
     public void test(Object instance) {
         Class<?> clazz = instance.getClass();
         try {
-            // Get the toString() method of the class
-            Method toStringMethod = getToStringMethod(clazz);
+            Method toStringMethod = getMethod(clazz, "toString");
 
-            // If the class doesn't have a toString() method, print a message and return
             if (toStringMethod == null) {
-                System.out.println("Class " + clazz.getSimpleName() + " does not have a toString() method.");
-                return;
+                return; // No 'toString' method, nothing to test
             }
 
             Object instanceTest = createInstance(clazz);
 
-            // Define the expected beginning of the toString() representation
             String expectedBeginning = clazz.getSimpleName() + "{";
 
             // Invoke the toString() method and check if it starts with the expected beginning
@@ -56,38 +52,6 @@ public class ToStringTester implements Tester, StandardTester {
             }
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException("Error testing toString() beginning for class " + clazz.getSimpleName(), e);
-        }
-    }
-
-    /**
-     * Retrieves the toString() method of the given class.
-     *
-     * @param clazz The class to retrieve the toString() method from.
-     * @return The toString() method or null if not found.
-     */
-    private static Method getToStringMethod(Class<?> clazz) {
-        try {
-            return clazz.getDeclaredMethod("toString");
-        } catch (NoSuchMethodException e) {
-            return null;
-        }
-    }
-
-    /**
-     * Creates an instance of the given class.
-     *
-     * @param clazz The class to create an instance of.
-     * @return An instance of the class.
-     */
-    private static Object createInstance(Class<?> clazz) {
-        try {
-            if (clazz.isEnum()) {
-                return clazz.getEnumConstants()[0];
-            } else {
-                return clazz.getDeclaredConstructor().newInstance();
-            }
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Error creating instance of class " + clazz.getSimpleName(), e);
         }
     }
 }
