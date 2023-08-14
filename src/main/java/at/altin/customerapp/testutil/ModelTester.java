@@ -23,7 +23,6 @@ import java.util.function.Supplier;
  * {@code
  * ModelTester.forClass(YourClassToTest.class)
  *            .exclude(GetterSetterTester.class)
- *            .excludeMethods("hashCode")
  *            .customTester(new CustomTester()) // Use the custom tester
  *            .instanceSupplier(() -> {
  *                // Custom instance creation logic
@@ -55,20 +54,36 @@ public class ModelTester extends AbstractClassTester {
         testers.addAll(STANDARD_TESTER);
     }
 
+    /**
+     * The class to be tested
+     * @param clazz class
+     */
     public static ModelTester forClass(Class<?> clazz) {
         return new ModelTester(clazz);
     }
 
+    /**
+     * exclude Standard Testers
+     * @param testerClass tester to be excluded
+     */
     public ModelTester exclude(Class<? extends Tester> testerClass) {
         excludedTesters.add(testerClass);
         return this;
     }
 
+    /**
+     * Add a custom tester, or implement directly a custom tester method
+     * @param tester tester to be added
+     */
     public ModelTester customTester(Tester tester) {
         testers.add(tester);
         return this;
     }
 
+    /**
+     * give a specific supplier instead of using the default one
+     * @param supplier class supplier
+     */
     public ModelTester instanceSupplier(Supplier<Object> supplier) {
         instanceSupplier = supplier;
         return this;
