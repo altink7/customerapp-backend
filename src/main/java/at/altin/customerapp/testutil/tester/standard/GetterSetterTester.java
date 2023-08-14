@@ -1,5 +1,6 @@
 package at.altin.customerapp.testutil.tester.standard;
 
+import at.altin.customerapp.testutil.tester.base.AbstractClassTester;
 import at.altin.customerapp.testutil.tester.base.Tester;
 
 import java.lang.reflect.Constructor;
@@ -17,7 +18,7 @@ import java.util.HashSet;
  * @since   12.08.2023
  * @version 1.0
  */
-public class GetterSetterTester implements Tester {
+public class GetterSetterTester extends AbstractClassTester implements Tester {
 
     @Override
     public void test(Object instance) {

@@ -3,7 +3,6 @@ package at.altin.customerapp.testutil.tester.custom;
 
 import at.altin.customerapp.testutil.tester.base.AbstractClassTester;
 import at.altin.customerapp.testutil.tester.base.Tester;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -18,6 +17,7 @@ import java.lang.reflect.Method;
  */
 public class CopyTester extends AbstractClassTester implements Tester {
 
+    @Override
     public void test(Object instance) {
         Class<?> clazz = instance.getClass();
 

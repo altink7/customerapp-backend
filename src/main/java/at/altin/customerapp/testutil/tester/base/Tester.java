@@ -1,7 +1,9 @@
 package at.altin.customerapp.testutil.tester.base;
 
 /**
- * Marker Interface for All Tester Classes
+ * This annotation interface defines a tester for classes and methods functionality.
+ * Test methods annotated with this should take an instance parameter for testing.
+ *
  * @author altin
  * @since 12.08.2023
  * @version 1.0.0

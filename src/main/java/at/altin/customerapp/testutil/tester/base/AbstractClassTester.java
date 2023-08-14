@@ -1,13 +1,6 @@
 package at.altin.customerapp.testutil.tester.base;
 
-import at.altin.customerapp.testutil.tester.standard.EqualsTester;
-import at.altin.customerapp.testutil.tester.standard.GetterSetterTester;
-import at.altin.customerapp.testutil.tester.standard.HashCodeTester;
-import at.altin.customerapp.testutil.tester.standard.ToStringTester;
-
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Holds Basic Implementing for all Testers
