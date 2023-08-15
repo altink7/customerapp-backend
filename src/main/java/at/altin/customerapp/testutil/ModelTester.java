@@ -89,6 +89,14 @@ public class ModelTester extends AbstractClassTester {
         return this;
     }
 
+    /**
+     * Removes standard Testers for this test run.
+     */
+    public ModelTester excludeStandardTesters() {
+        testers.removeAll(STANDARD_TESTER);
+        return this;
+    }
+
     public void test() {
         Object instance = instanceSupplier.get();
 
