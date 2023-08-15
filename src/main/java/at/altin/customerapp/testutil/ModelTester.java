@@ -97,6 +97,9 @@ public class ModelTester extends AbstractClassTester {
         return this;
     }
 
+    /**
+     * runs the tests from the provided Testers
+     */
     public void test() {
         Object instance = instanceSupplier.get();
 
